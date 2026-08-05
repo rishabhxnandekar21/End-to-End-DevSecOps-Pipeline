@@ -1,0 +1,73 @@
+body {
+  background: #f3f5f9;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  background: #2563eb;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboard {
+  width: 90%;
+  margin: auto;
+  padding: 30px;
+}
+
+.todo-form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.todo-form input,
+.todo-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.todo-form button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.todo-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.todo-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.todo-card span {
+  display: inline-block;
+  margin: 10px 0;
+  background: #facc15;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
