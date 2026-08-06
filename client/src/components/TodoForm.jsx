@@ -1,14 +1,45 @@
-function TodoForm() {
+import { useState } from "react";
+
+function TodoForm({ onAddTodo }) {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!title.trim()) {
+      alert("Title is required");
+      return;
+    }
+
+    onAddTodo({
+      title,
+      description,
+    });
+
+    setTitle("");
+    setDescription("");
+  };
+
   return (
-    <div className="todo-form">
+    <form className="todo-form" onSubmit={handleSubmit}>
       <h2>Add Todo</h2>
 
-      <input type="text" placeholder="Todo Title" />
+      <input
+        type="text"
+        placeholder="Todo Title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
 
-      <textarea placeholder="Description"></textarea>
+      <textarea
+        placeholder="Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
 
-      <button>Add Todo</button>
-    </div>
+      <button type="submit">Add Todo</button>
+    </form>
   );
 }
 

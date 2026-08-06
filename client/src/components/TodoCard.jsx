@@ -6,11 +6,6 @@ function TodoCard({ title, description, status }) {
       <p>{description}</p>
 
       <span>{status}</span>
-
-      <div className="actions">
-        <button>Edit</button>
-        <button>Delete</button>
-      </div>
     </div>
   );
 }
