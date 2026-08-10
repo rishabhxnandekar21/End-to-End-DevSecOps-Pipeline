@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+    options {
+        skipDefaultCheckout(true)
+    }
+
+    environment {
+        GITLEAKS = 'C:\\Tools\\gitleaks\\gitleaks.exe'
+    }
+
     stages {
 
         stage('Clean Workspace') {
@@ -17,7 +25,7 @@ pipeline {
 
         stage('GitLeaks Scan') {
             steps {
-                bat 'gitleaks dir .'
+                bat '"%GITLEAKS%" dir . --verbose'
             }
         }
 
@@ -67,8 +75,10 @@ pipeline {
     post {
 
         success {
-            archiveArtifacts artifacts: 'client/dist/**',
-                             fingerprint: true
+            archiveArtifacts(
+                artifacts: 'client/dist/**',
+                fingerprint: true
+            )
 
             echo '========================================'
             echo ' Jenkins CI Pipeline Successful!'
