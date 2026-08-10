@@ -3,9 +3,25 @@ pipeline {
 
     stages {
 
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
         stage('Checkout') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage('Verify Tools') {
+            steps {
+                bat 'git --version'
+                bat 'node -v'
+                bat 'npm -v'
+                bat 'docker --version'
+                bat 'docker compose version'
             }
         }
 
@@ -43,12 +59,25 @@ pipeline {
     }
 
     post {
+
         success {
-            echo 'Build Successful!'
+            archiveArtifacts artifacts: 'client/dist/**',
+                             fingerprint: true
+
+            echo '========================================'
+            echo ' Jenkins CI Pipeline Successful!'
+            echo '========================================'
         }
 
         failure {
-            echo 'Build Failed!'
+            echo '========================================'
+            echo ' Jenkins CI Pipeline Failed!'
+            echo ' Check the Console Output.'
+            echo '========================================'
+        }
+
+        always {
+            echo 'Pipeline execution completed.'
         }
     }
 }
