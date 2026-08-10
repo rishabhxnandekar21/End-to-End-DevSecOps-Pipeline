@@ -15,6 +15,12 @@ pipeline {
             }
         }
 
+        stage('GitLeaks Scan') {
+            steps {
+                bat 'gitleaks dir .'
+            }
+        }
+
         stage('Verify Tools') {
             steps {
                 bat 'git --version'
