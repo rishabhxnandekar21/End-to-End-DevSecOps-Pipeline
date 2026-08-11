@@ -3,6 +3,7 @@ pipeline {
 
     options {
         skipDefaultCheckout(true)
+        timestamps()
     }
 
     environment {
@@ -70,6 +71,26 @@ pipeline {
                 }
             }
         }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner'
+
+                    withSonarQubeEnv('SonarQube') {
+                        bat "\"${scannerHome}\\bin\\sonar-scanner.bat\""
+                    }
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
     }
 
     post {
@@ -82,6 +103,9 @@ pipeline {
 
             echo '========================================'
             echo ' Jenkins CI Pipeline Successful!'
+            echo ' GitLeaks: PASSED'
+            echo ' SonarQube: PASSED'
+            echo ' Quality Gate: PASSED'
             echo '========================================'
         }
 
