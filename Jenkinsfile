@@ -67,7 +67,8 @@ pipeline {
                     --scan "." ^
                     --format HTML ^
                     --out "dependency-check-report" ^
-                    --disableYarnAudit
+                    --disableYarnAudit ^
+                    --failOnCVSS 7
                 '''
             }
         }
@@ -127,6 +128,7 @@ pipeline {
             echo '========================================'
             echo ' Jenkins CI Pipeline Successful!'
             echo ' GitLeaks: PASSED'
+            echo ' OWASP Dependency-Check: PASSED'
             echo ' SonarQube: PASSED'
             echo ' Quality Gate: PASSED'
             echo '========================================'
@@ -140,6 +142,12 @@ pipeline {
         }
 
         always {
+            archiveArtifacts(
+                artifacts: 'dependency-check-report/dependency-check-report.html',
+                allowEmptyArchive: true,
+                fingerprint: true
+            )
+
             echo 'Pipeline execution completed.'
         }
     }
