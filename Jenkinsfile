@@ -82,9 +82,9 @@ pipeline {
             }
         }
 
-        stage('SonarQube Connectivity Test') {
+        stage('SonarQube API Test') {
             steps {
-                bat 'curl.exe -v --connect-timeout 10 http://host.docker.internal:9000/api/system/status'
+                bat 'curl.exe -v --connect-timeout 10 http://host.docker.internal:9000/api/v2/analysis/version'
             }
         }
 
