@@ -7,8 +7,9 @@ pipeline {
     }
 
     environment {
-        GITLEAKS = 'C:\\Tools\\gitleaks\\gitleaks.exe'
-    }
+    GITLEAKS = 'C:\\Tools\\gitleaks\\gitleaks.exe'
+    DEPENDENCY_CHECK = 'C:\\Tools\\dependency-check\\bin\\dependency-check.bat'
+}
 
     stages {
 
@@ -27,6 +28,12 @@ pipeline {
         stage('GitLeaks Scan') {
             steps {
                 bat '"%GITLEAKS%" dir . --verbose'
+            }
+        }
+
+        stage('Dependency-Check Verify') {
+            steps {
+                bat '"%DEPENDENCY_CHECK%" --version'
             }
         }
 
