@@ -82,9 +82,22 @@ pipeline {
             }
         }
 
-        stage('SonarQube API Test') {
+        stage('SonarQube Analysis') {
             steps {
-                bat 'curl.exe -v --connect-timeout 10 http://host.docker.internal:9000/api/v2/analysis/version'
+                script {
+                    def scannerHome = tool 'SonarScanner'
+
+                    withSonarQubeEnv('SonarQube') {
+                        withCredentials([
+                            string(
+                                credentialsId: 'sonarqube-token',
+                                variable: 'SONAR_TOKEN'
+                            )
+                        ]) {
+                            bat "\"${scannerHome}\\bin\\sonar-scanner.bat\" -Dsonar.token=%SONAR_TOKEN%"
+                        }
+                    }
+                }
             }
         }
 
