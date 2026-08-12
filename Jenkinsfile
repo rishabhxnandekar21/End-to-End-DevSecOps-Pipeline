@@ -12,7 +12,7 @@ pipeline {
     JAVA_HOME = 'C:\\Users\\risha\\AppData\\Local\\Programs\\Eclipse Adoptium\\jdk-21.0.12.8-hotspot'
     PATH = "${JAVA_HOME}\\bin;${env.PATH}"
     }
-    
+
     stages {
 
         stage('Clean Workspace') {
@@ -82,15 +82,9 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('SonarQube Connectivity Test') {
             steps {
-                script {
-                    def scannerHome = tool 'SonarScanner'
-
-                    withSonarQubeEnv('SonarQube') {
-                        bat "\"${scannerHome}\\bin\\sonar-scanner.bat\""
-                    }
-                }
+                bat 'curl.exe -v --connect-timeout 10 http://host.docker.internal:9000/api/system/status'
             }
         }
 
