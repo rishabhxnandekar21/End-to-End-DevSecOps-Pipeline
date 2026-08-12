@@ -2,6 +2,8 @@
 FROM node:22-alpine
 #alpine is a lightweight version of the image
 
+RUN npm install -g npm@10.9.9
+
 # set working directory
 WORKDIR /app
 
