@@ -7,12 +7,12 @@ pipeline {
     }
 
     environment {
-    GITLEAKS = 'C:\\Tools\\gitleaks\\gitleaks.exe'
-    DEPENDENCY_CHECK = 'C:\\Tools\\dependency-check\\bin\\dependency-check.bat'
-    TRIVY = 'C:\\Tools\\trivy\\trivy.exe'
+        GITLEAKS = 'C:\\Tools\\gitleaks\\gitleaks.exe'
+        DEPENDENCY_CHECK = 'C:\\Tools\\dependency-check\\bin\\dependency-check.bat'
+        TRIVY = 'C:\\Tools\\trivy\\trivy.exe'
 
-    JAVA_HOME = 'C:\\Users\\risha\\AppData\\Local\\Programs\\Eclipse Adoptium\\jdk-21.0.12.8-hotspot'
-    PATH = "${JAVA_HOME}\\bin;${env.PATH}"
+        JAVA_HOME = 'C:\\Users\\risha\\AppData\\Local\\Programs\\Eclipse Adoptium\\jdk-21.0.12.8-hotspot'
+        PATH = "${JAVA_HOME}\\bin;${env.PATH}"
     }
 
     stages {
@@ -42,22 +42,6 @@ pipeline {
                 bat 'npm -v'
                 bat 'docker --version'
                 bat 'docker compose version'
-            }
-        }
-
-        stage('Trivy Verify') {
-            steps {
-                bat '"%TRIVY%" --version'
-            }
-        }
-
-        stage('Trivy Image Scan') {
-            steps {
-                bat '''
-                    "%TRIVY%" image ^
-                    --severity HIGH,CRITICAL ^
-                    end-to-end-devsecops-pipeline-backend
-                '''
             }
         }
 
@@ -133,6 +117,28 @@ pipeline {
                 }
             }
         }
+
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t devsecops-backend:ci ./api'
+            }
+        }
+
+        stage('Trivy Verify') {
+            steps {
+                bat '"%TRIVY%" --version'
+            }
+        }
+
+        stage('Trivy Image Scan') {
+            steps {
+                bat '''
+                    "%TRIVY%" image ^
+                    --severity HIGH,CRITICAL ^
+                    devsecops-backend:ci
+                '''
+            }
+        }
     }
 
     post {
@@ -149,6 +155,8 @@ pipeline {
             echo ' OWASP Dependency-Check: PASSED'
             echo ' SonarQube: PASSED'
             echo ' Quality Gate: PASSED'
+            echo ' Docker Build: PASSED'
+            echo ' Trivy: PASSED'
             echo '========================================'
         }
 
