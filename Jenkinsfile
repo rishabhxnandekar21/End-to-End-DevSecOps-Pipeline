@@ -33,13 +33,6 @@ pipeline {
             }
         }
 
-        stage('Dependency-Check Verify') {
-            steps {
-                bat 'java -version'
-                bat '"%DEPENDENCY_CHECK%" --version'
-            }
-        }
-
         stage('Verify Tools') {
             steps {
                 bat 'git --version'
@@ -63,6 +56,19 @@ pipeline {
                 dir('client') {
                     bat 'npm install'
                 }
+            }
+        }
+
+        stage('OWASP Dependency-Check') {
+            steps {
+                bat '''
+                    "%DEPENDENCY_CHECK%" ^
+                    --project "DevSecOps Task Manager" ^
+                    --scan "." ^
+                    --format HTML ^
+                    --out "dependency-check-report" ^
+                    --disableYarnAudit
+                '''
             }
         }
 
