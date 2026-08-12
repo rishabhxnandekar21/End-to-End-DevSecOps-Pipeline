@@ -9,8 +9,10 @@ pipeline {
     environment {
     GITLEAKS = 'C:\\Tools\\gitleaks\\gitleaks.exe'
     DEPENDENCY_CHECK = 'C:\\Tools\\dependency-check\\bin\\dependency-check.bat'
-}
-
+    JAVA_HOME = 'C:\\Users\\risha\\AppData\\Local\\Programs\\Eclipse Adoptium\\jdk-21.0.12.8-hotspot'
+    PATH = "${JAVA_HOME}\\bin;${env.PATH}"
+    }
+    
     stages {
 
         stage('Clean Workspace') {
