@@ -33,6 +33,7 @@ pipeline {
 
         stage('Dependency-Check Verify') {
             steps {
+                bat 'java -version'
                 bat '"%DEPENDENCY_CHECK%" --version'
             }
         }
