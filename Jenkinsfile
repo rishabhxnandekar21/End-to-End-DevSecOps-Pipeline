@@ -95,6 +95,15 @@ pipeline {
             }
         }
 
+        stage('Test SonarQube Connectivity') {
+            steps {
+                bat '''
+                    echo Testing SonarQube connectivity...
+                    curl.exe -I http://host.docker.internal:9000
+                '''
+            }
+        }
+
         stage('SonarQube Analysis') {
             steps {
                 script {
