@@ -13,6 +13,10 @@ pipeline {
 
         JAVA_HOME = 'C:\\Users\\risha\\AppData\\Local\\Programs\\Eclipse Adoptium\\jdk-21.0.12.8-hotspot'
         PATH = "${JAVA_HOME}\\bin;${env.PATH}"
+
+        DOCKER_USERNAME = 'rishabhxnandekar'
+        BACKEND_IMAGE = 'rishabhxnandekar/devsecops-backend'
+        FRONTEND_IMAGE = 'rishabhxnandekar/devsecops-frontend'
     }
 
     stages {
@@ -120,7 +124,29 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t devsecops-backend:ci ./api'
+                bat '''
+                    echo ========================================
+                    echo Building Backend Docker Image
+                    echo ========================================
+
+                    docker build ^
+                        -t %BACKEND_IMAGE%:v1-build-%BUILD_NUMBER% ^
+                        -t %BACKEND_IMAGE%:latest ^
+                        ./api
+
+                    echo.
+                    echo ========================================
+                    echo Building Frontend Docker Image
+                    echo ========================================
+
+                    docker build ^
+                        -t %FRONTEND_IMAGE%:v1-build-%BUILD_NUMBER% ^
+                        -t %FRONTEND_IMAGE%:latest ^
+                        ./client
+
+                    echo.
+                    echo Docker images built successfully.
+                '''
             }
         }
 
@@ -133,10 +159,66 @@ pipeline {
         stage('Trivy Image Scan') {
             steps {
                 bat '''
+                    echo ========================================
+                    echo Scanning Backend Image
+                    echo ========================================
+
                     "%TRIVY%" image ^
                     --severity HIGH,CRITICAL ^
-                    devsecops-backend:ci
+                    %BACKEND_IMAGE%:v1-build-%BUILD_NUMBER%
+
+                    echo.
+                    echo ========================================
+                    echo Scanning Frontend Image
+                    echo ========================================
+
+                    "%TRIVY%" image ^
+                    --severity HIGH,CRITICAL ^
+                    %FRONTEND_IMAGE%:v1-build-%BUILD_NUMBER%
                 '''
+            }
+        }
+
+        stage('Docker Hub Push') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-test-new',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    bat '''
+                        echo ========================================
+                        echo Configuring Docker Hub Authentication
+                        echo ========================================
+
+                        if not exist "%WORKSPACE%\\.docker" mkdir "%WORKSPACE%\\.docker"
+
+                        powershell -NoProfile -Command "$auth = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($env:DOCKER_USER + ':' + $env:DOCKER_PASSWORD)); $config = @{auths=@{'https://index.docker.io/v1/'=@{auth=$auth}}} | ConvertTo-Json -Depth 5; [IO.File]::WriteAllText('%WORKSPACE%\\.docker\\config.json', $config)"
+
+                        set "DOCKER_CONFIG=%WORKSPACE%\\.docker"
+
+                        echo.
+                        echo ========================================
+                        echo Pushing Backend Image
+                        echo ========================================
+
+                        docker push %BACKEND_IMAGE%:v1-build-%BUILD_NUMBER%
+                        docker push %BACKEND_IMAGE%:latest
+
+                        echo.
+                        echo ========================================
+                        echo Pushing Frontend Image
+                        echo ========================================
+
+                        docker push %FRONTEND_IMAGE%:v1-build-%BUILD_NUMBER%
+                        docker push %FRONTEND_IMAGE%:latest
+
+                        echo.
+                        echo Docker images pushed successfully.
+                    '''
+                }
             }
         }
     }
@@ -155,8 +237,11 @@ pipeline {
             echo ' OWASP Dependency-Check: PASSED'
             echo ' SonarQube: PASSED'
             echo ' Quality Gate: PASSED'
+            echo ' Frontend Build: PASSED'
+            echo ' Backend Validation: PASSED'
             echo ' Docker Build: PASSED'
             echo ' Trivy: PASSED'
+            echo ' Docker Hub Push: PASSED'
             echo '========================================'
         }
 
