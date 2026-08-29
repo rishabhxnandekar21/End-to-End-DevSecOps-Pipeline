@@ -27,3 +27,12 @@ client/dist/
 
 # Coverage
 coverage/
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+tfplan
+*.tfplan
+crash.log
+crash.*.log
