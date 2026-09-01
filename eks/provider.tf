@@ -14,10 +14,31 @@ terraform {
       source  = "hashicorp/tls"
       version = "~> 4.0"
     }
+
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 3.2"
+    }
   }
 }
 
 provider "aws" {
   region  = var.aws_region
   profile = "terraform-admin"
+}
+
+data "aws_eks_cluster" "devsecops" {
+  name = aws_eks_cluster.devsecops.name
+}
+
+data "aws_eks_cluster_auth" "devsecops" {
+  name = aws_eks_cluster.devsecops.name
+}
+
+provider "helm" {
+  kubernetes = {
+    host                   = data.aws_eks_cluster.devsecops.endpoint
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.devsecops.certificate_authority[0].data)
+    token                  = data.aws_eks_cluster_auth.devsecops.token
+  }
 }

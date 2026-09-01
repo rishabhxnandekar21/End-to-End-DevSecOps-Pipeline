@@ -30,6 +30,7 @@ spec:
       containers:
         - name: postgres
           image: postgres:17
+
           ports:
             - containerPort: 5432
 
@@ -45,6 +46,9 @@ spec:
 
             - name: POSTGRES_DB
               value: devsecops_pipeline
+
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
 
           volumeMounts:
             - name: postgres-data
