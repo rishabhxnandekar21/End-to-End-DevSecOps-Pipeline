@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: rishabhxnandekar/devsecops-backend:v1-build-21
+          image: rishabhxnandekar/devsecops-backend:v1-build-24
 
           ports:
             - containerPort: 5000

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: rishabhxnandekar/devsecops-frontend:v1-build-22
+          image: rishabhxnandekar/devsecops-frontend:v1-build-24
           ports:
             - containerPort: 80
           resources:
