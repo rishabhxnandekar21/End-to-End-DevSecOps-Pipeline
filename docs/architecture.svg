@@ -1,0 +1,251 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1452" height="1220" viewBox="0 0 1452 1220" role="img" aria-label="End-to-end DevSecOps pipeline architecture">
+<defs>
+<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/></marker>
+</defs>
+<rect width="1452" height="1220" fill="#ffffff"/>
+<text x="26" y="44" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="25" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">End-to-End DevSecOps Pipeline</text>
+<text x="26" y="66" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">Jenkins CI  ·  GitLeaks / OWASP / SonarQube / Trivy  ·  Docker Hub  ·  GitOps  ·  Argo CD  ·  Amazon EKS</text>
+<rect x="26" y="88" width="170" height="52" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="42" y="112" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#0f172a" font-weight="600" text-anchor="start" letter-spacing="0">Developer</text>
+<text x="42" y="128" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">commits on main</text>
+<rect x="246" y="88" width="250" height="52" rx="8" fill="#ffffff" stroke="#24292f" stroke-width="1"/>
+<rect x="246" y="88" width="4" height="52" rx="2" fill="#24292f"/>
+<text x="264" y="112" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#0f172a" font-weight="600" text-anchor="start" letter-spacing="0">GitHub</text>
+<text x="264" y="128" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">End-to-End-DevSecOps-Pipeline</text>
+<path d="M196 114 H240" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="198" y="82" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">git push origin main</text>
+<path d="M496 114 H660 V158" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="508" y="108" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">triggers the Jenkins pipeline</text>
+<rect x="26" y="168" width="1400" height="286" rx="12" fill="#f8fafc" stroke="#dbe2ea" stroke-width="1"/>
+<rect x="26" y="168" width="5" height="286" rx="2" fill="#d24939"/>
+<text x="50" y="196" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#d24939" font-weight="700" text-anchor="start" letter-spacing="1.4">1   CONTINUOUS INTEGRATION</text>
+<text x="252" y="196" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">— Jenkins declarative pipeline  ·  16 stages  ·  Windows agent</text>
+<rect x="52" y="220" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="52" y="220" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="72" cy="239" r="10" fill="#475569"/>
+<text x="72" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">1</text>
+<text x="88" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Clean Workspace</text>
+<text x="64" y="260" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">cleanWs()</text>
+<rect x="222" y="220" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="222" y="220" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="242" cy="239" r="10" fill="#475569"/>
+<text x="242" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">2</text>
+<text x="258" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Checkout</text>
+<text x="234" y="260" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">checkout scm</text>
+<text x="234" y="272" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">branch: main</text>
+<rect x="392" y="220" width="150" height="76" rx="8" fill="#fef4f4" stroke="#dc2626" stroke-width="1"/>
+<rect x="392" y="220" width="4" height="76" rx="2" fill="#dc2626"/>
+<circle cx="412" cy="239" r="10" fill="#dc2626"/>
+<text x="412" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">3</text>
+<text x="428" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">GitLeaks Scan</text>
+<text x="404" y="260" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">secret detection</text>
+<text x="404" y="272" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">gitleaks dir .</text>
+<rect x="562" y="220" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="562" y="220" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="582" cy="239" r="10" fill="#475569"/>
+<text x="582" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">4</text>
+<text x="598" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Verify Tools</text>
+<text x="574" y="260" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">git · node · npm</text>
+<text x="574" y="272" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">docker · compose</text>
+<rect x="732" y="220" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="732" y="220" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="752" cy="239" r="10" fill="#475569"/>
+<text x="752" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">5</text>
+<text x="768" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Backend Deps</text>
+<text x="744" y="260" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">npm install</text>
+<text x="744" y="272" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">in api/</text>
+<rect x="902" y="220" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="902" y="220" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="922" cy="239" r="10" fill="#475569"/>
+<text x="922" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">6</text>
+<text x="938" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Frontend Deps</text>
+<text x="914" y="260" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">npm install</text>
+<text x="914" y="272" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">in client/</text>
+<rect x="1072" y="220" width="150" height="76" rx="8" fill="#fef4f4" stroke="#dc2626" stroke-width="1"/>
+<rect x="1072" y="220" width="4" height="76" rx="2" fill="#dc2626"/>
+<circle cx="1092" cy="239" r="10" fill="#dc2626"/>
+<text x="1092" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">7</text>
+<text x="1108" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">OWASP</text>
+<text x="1084" y="258" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Dependency-Check</text>
+<text x="1084" y="278" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">--failOnCVSS 7</text>
+<rect x="1242" y="220" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="1242" y="220" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="1262" cy="239" r="10" fill="#475569"/>
+<text x="1262" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">8</text>
+<text x="1278" y="243" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Build Frontend</text>
+<text x="1254" y="260" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">vite build</text>
+<text x="1254" y="272" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">client/dist</text>
+<rect x="52" y="326" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="52" y="326" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="72" cy="345" r="10" fill="#475569"/>
+<text x="72" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">9</text>
+<text x="88" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Backend</text>
+<text x="64" y="364" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Validation</text>
+<text x="64" y="384" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">node --check server.js</text>
+<rect x="222" y="326" width="150" height="76" rx="8" fill="#fef4f4" stroke="#dc2626" stroke-width="1"/>
+<rect x="222" y="326" width="4" height="76" rx="2" fill="#dc2626"/>
+<circle cx="242" cy="345" r="10" fill="#dc2626"/>
+<text x="242" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">10</text>
+<text x="258" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">SonarQube Analysis</text>
+<text x="234" y="366" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">SAST + quality</text>
+<text x="234" y="378" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">sonar-scanner</text>
+<rect x="392" y="326" width="150" height="76" rx="8" fill="#fef4f4" stroke="#dc2626" stroke-width="1"/>
+<rect x="392" y="326" width="4" height="76" rx="2" fill="#dc2626"/>
+<circle cx="412" cy="345" r="10" fill="#dc2626"/>
+<text x="412" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">11</text>
+<text x="428" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Quality Gate</text>
+<text x="404" y="366" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">abortPipeline: true</text>
+<text x="404" y="378" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">timeout 5 min</text>
+<rect x="562" y="326" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="562" y="326" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="582" cy="345" r="10" fill="#475569"/>
+<text x="582" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">12</text>
+<text x="598" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Docker Build</text>
+<text x="574" y="366" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">backend + frontend</text>
+<text x="574" y="378" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">v1-build-N, latest</text>
+<rect x="732" y="326" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="732" y="326" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="752" cy="345" r="10" fill="#475569"/>
+<text x="752" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">13</text>
+<text x="768" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Trivy Verify</text>
+<text x="744" y="366" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">trivy --version</text>
+<rect x="902" y="326" width="150" height="76" rx="8" fill="#fef4f4" stroke="#dc2626" stroke-width="1"/>
+<rect x="902" y="326" width="4" height="76" rx="2" fill="#dc2626"/>
+<circle cx="922" cy="345" r="10" fill="#dc2626"/>
+<text x="922" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">14</text>
+<text x="938" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Trivy Image Scan</text>
+<text x="914" y="366" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">HIGH, CRITICAL</text>
+<text x="914" y="378" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">on both images</text>
+<rect x="1072" y="326" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="1072" y="326" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="1092" cy="345" r="10" fill="#475569"/>
+<text x="1092" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">15</text>
+<text x="1108" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Docker Hub Push</text>
+<text x="1084" y="366" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">4 tags published</text>
+<text x="1084" y="378" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">token credential</text>
+<rect x="1242" y="326" width="150" height="76" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="1242" y="326" width="4" height="76" rx="2" fill="#94a3b8"/>
+<circle cx="1262" cy="345" r="10" fill="#475569"/>
+<text x="1262" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" letter-spacing="0">16</text>
+<text x="1278" y="349" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">GitOps Manifest</text>
+<text x="1254" y="364" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10.5" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Update</text>
+<text x="1254" y="384" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">PowerShell -replace</text>
+<path d="M1392 258 H1404 Q1410 258 1410 264 V304 Q1410 310 1404 310 H1186 A16 16 0 0 0 1154 310 H48 Q42 310 42 316 V358 Q42 364 48 364 H50" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="52" y="430" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">GitLeaks, OWASP Dependency-Check and Trivy run as local CLI tools on the agent. Any security gate that reports a finding — or a failed SonarQube Quality Gate — aborts the build before an image is ever published.</text>
+<path d="M1360 402 V470 H1186 A16 16 0 0 0 1154 470 H230 V550" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="600" y="464" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">stage 16 commits the new tag as jenkins-ci and pushes to main</text>
+<path d="M1170 402 V550" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="1180" y="476" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">docker push</text>
+<rect x="26" y="508" width="1400" height="160" rx="12" fill="#f8fafc" stroke="#dbe2ea" stroke-width="1"/>
+<rect x="26" y="508" width="5" height="160" rx="2" fill="#ef7b4d"/>
+<text x="50" y="536" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#ef7b4d" font-weight="700" text-anchor="start" letter-spacing="1.4">2   GITOPS DELIVERY</text>
+<text x="212" y="536" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">— the CI job holds no cluster credentials; it only changes Git</text>
+<rect x="90" y="556" width="280" height="88" rx="8" fill="#ffffff" stroke="#24292f" stroke-width="1"/>
+<rect x="90" y="556" width="4" height="88" rx="2" fill="#24292f"/>
+<text x="106" y="580" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">GitHub  ·  k8s-manifests/</text>
+<text x="106" y="598" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">backend.yaml   frontend.yaml</text>
+<text x="106" y="611" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">image: ...:v1-build-24</text>
+<text x="106" y="624" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">every deploy is an auditable commit</text>
+<rect x="520" y="556" width="280" height="88" rx="8" fill="#ffffff" stroke="#ef7b4d" stroke-width="1"/>
+<rect x="520" y="556" width="4" height="88" rx="2" fill="#ef7b4d"/>
+<text x="536" y="580" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Argo CD   (ns: argocd)</text>
+<text x="536" y="598" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">Application: devsecops-app</text>
+<text x="536" y="611" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">automated · prune · selfHeal</text>
+<text x="536" y="624" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">path: k8s-manifests  →  ns prod</text>
+<rect x="1030" y="556" width="280" height="88" rx="8" fill="#ffffff" stroke="#2496ed" stroke-width="1"/>
+<rect x="1030" y="556" width="4" height="88" rx="2" fill="#2496ed"/>
+<text x="1046" y="580" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">Docker Hub</text>
+<text x="1046" y="598" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">rishabhxnandekar/devsecops-backend</text>
+<text x="1046" y="611" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">rishabhxnandekar/devsecops-frontend</text>
+<text x="1046" y="624" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">tags:  v1-build-N   +   latest</text>
+<path d="M370 600 H514" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="442" y="592" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="middle" letter-spacing="0">detects</text>
+<path d="M660 644 V688 H560 V950" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="572" y="682" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">applies the manifests to namespace prod</text>
+<path d="M1170 644 V670 H860 V950" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+<text x="872" y="664" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">kubelet pulls the tagged images</text>
+<rect x="26" y="720" width="1400" height="452" rx="12" fill="#fffdf8" stroke="#f0d9b5" stroke-width="1"/>
+<rect x="26" y="720" width="5" height="452" rx="2" fill="#e8830c"/>
+<text x="50" y="748" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="12" fill="#e8830c" font-weight="700" text-anchor="start" letter-spacing="1.4">3   RUNTIME</text>
+<text x="152" y="748" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">— AWS ap-south-1  ·  account 510720290879  ·  provisioned by Terraform (eks/*.tf)</text>
+<rect x="42" y="846" width="92" height="84" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="88" y="882" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#0f172a" font-weight="600" text-anchor="middle" letter-spacing="0">Internet</text>
+<text x="88" y="898" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#0f172a" font-weight="600" text-anchor="middle" letter-spacing="0">users</text>
+<text x="88" y="918" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="middle" text-anchor="'JetBrains Mono',Consolas,'Courier New',monospace" letter-spacing="0">HTTP :80</text>
+<rect x="150" y="764" width="1258" height="390" rx="10" fill="#ffffff" stroke="#e3c99a" stroke-width="1"/>
+<text x="172" y="786" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#8a6d3b" font-weight="600" text-anchor="start" letter-spacing="0">VPC  vpc-053cbf0227d0386c6   ·   10.0.0.0/16   ·   DNS hostnames + DNS support</text>
+<rect x="172" y="800" width="1214" height="104" rx="8" fill="#fdfaf3" stroke="#ecd9b6" stroke-width="1"/>
+<text x="194" y="820" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#9a7b45" font-weight="600" text-anchor="start" letter-spacing="0">Public subnets  ·  10.0.1.0/24, 10.0.2.0/24</text>
+<rect x="196" y="830" width="320" height="60" rx="8" fill="#ffffff" stroke="#e8830c" stroke-width="1"/>
+<rect x="196" y="830" width="4" height="60" rx="2" fill="#e8830c"/>
+<text x="212" y="854" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">AWS Application Load Balancer</text>
+<text x="212" y="872" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">internet-facing · target-type: ip · HTTP 80</text>
+<text x="538" y="852" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="600" text-anchor="start" letter-spacing="0">ALB DNS name</text>
+<text x="538" y="869" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8" fill="#94a3b8" font-weight="normal" text-anchor="start" letter-spacing="0">k8s-prod-devsecop-4cb3aacd64-446831915.ap-south-1.elb.amazonaws.com</text>
+<rect x="1000" y="830" width="140" height="60" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="1070" y="856" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="600" text-anchor="middle" letter-spacing="0">Internet</text>
+<text x="1070" y="871" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="600" text-anchor="middle" letter-spacing="0">Gateway</text>
+<rect x="1160" y="830" width="140" height="60" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="1230" y="856" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#0f172a" font-weight="600" text-anchor="middle" letter-spacing="0">NAT Gateway</text>
+<text x="1230" y="871" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="middle" text-anchor="start" letter-spacing="0">single · 1 EIP</text>
+<rect x="172" y="922" width="1214" height="216" rx="8" fill="#fdfaf3" stroke="#ecd9b6" stroke-width="1"/>
+<text x="194" y="942" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#9a7b45" font-weight="600" text-anchor="start" letter-spacing="0">Private subnets  ·  2 AZs</text>
+<text x="1376" y="942" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9.5" fill="#9a7b45" font-weight="600" text-anchor="end" letter-spacing="0">EKS  devsecops-eks   ·   k8s 1.36   ·   node group devsecops-nodes   ·   4 × t3.small   ·   10.0.11.0/24, 10.0.12.0/24</text>
+<rect x="196" y="956" width="840" height="166" rx="8" fill="#ffffff" stroke="#326ce5" stroke-width="1"/>
+<text x="216" y="976" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="10.5" fill="#326ce5" font-weight="700" text-anchor="start" letter-spacing="0">namespace: prod</text>
+<rect x="216" y="988" width="240" height="118" rx="8" fill="#ffffff" stroke="#009639" stroke-width="1"/>
+<rect x="216" y="988" width="4" height="118" rx="2" fill="#009639"/>
+<text x="232" y="1012" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">frontend</text>
+<text x="232" y="1030" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">Deployment  ·  3 replicas</text>
+<text x="232" y="1043" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">nginx:stable-alpine + React build</text>
+<text x="232" y="1056" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">frontend-svc  ClusterIP :80</text>
+<text x="232" y="1069" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">proxies /api/ → backend-svc</text>
+<text x="232" y="1082" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">limits  cpu 200m · mem 256Mi</text>
+<rect x="486" y="988" width="240" height="118" rx="8" fill="#ffffff" stroke="#5fa04e" stroke-width="1"/>
+<rect x="486" y="988" width="4" height="118" rx="2" fill="#5fa04e"/>
+<text x="502" y="1012" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">backend</text>
+<text x="502" y="1030" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">Deployment  ·  3 replicas</text>
+<text x="502" y="1043" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">node:22-alpine  ·  Express 5</text>
+<text x="502" y="1056" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">backend-svc  ClusterIP :5000</text>
+<text x="502" y="1069" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">DB password from Secret</text>
+<text x="502" y="1082" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">limits  cpu 500m · mem 512Mi</text>
+<rect x="756" y="988" width="240" height="118" rx="8" fill="#ffffff" stroke="#336791" stroke-width="1"/>
+<rect x="756" y="988" width="4" height="118" rx="2" fill="#336791"/>
+<text x="772" y="1012" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#0f172a" font-weight="700" text-anchor="start" letter-spacing="0">postgres</text>
+<text x="772" y="1030" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">Deployment  ·  1 replica</text>
+<text x="772" y="1043" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">postgres:17</text>
+<text x="772" y="1056" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">postgres  ClusterIP :5432</text>
+<text x="772" y="1069" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">db  devsecops_pipeline</text>
+<text x="772" y="1082" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">PGDATA on the mounted volume</text>
+<rect x="1056" y="988" width="130" height="118" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="1121" y="1012" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="11" fill="#0f172a" font-weight="700" text-anchor="middle" letter-spacing="0">EBS gp3</text>
+<text x="1121" y="1030" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="middle" text-anchor="start" letter-spacing="0">5Gi PVC</text>
+<text x="1121" y="1050" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="middle" text-anchor="'JetBrains Mono',Consolas,'Courier New',monospace" letter-spacing="0">sc: ebs-sc</text>
+<text x="1121" y="1068" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="7.5" fill="#94a3b8" font-weight="middle" text-anchor="'JetBrains Mono',Consolas,'Courier New',monospace" letter-spacing="0">WaitForFirstConsumer</text>
+<text x="1121" y="1090" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#64748b" font-weight="middle" text-anchor="'JetBrains Mono',Consolas,'Courier New',monospace" letter-spacing="0">reclaim: Retain</text>
+<rect x="1206" y="956" width="170" height="78" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="1222" y="976" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9.5" fill="#326ce5" font-weight="700" text-anchor="start" letter-spacing="0">namespace: kube-system</text>
+<text x="1222" y="995" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">AWS Load Balancer Ctrl</text>
+<text x="1222" y="1009" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">AWS EBS CSI add-on</text>
+<text x="1222" y="1025" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#94a3b8" font-weight="normal" text-anchor="start" letter-spacing="0">both via IRSA / OIDC</text>
+<rect x="1206" y="1044" width="170" height="78" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="1222" y="1064" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="9.5" fill="#f46800" font-weight="700" text-anchor="start" letter-spacing="0">namespace: monitoring</text>
+<text x="1222" y="1083" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">kube-prometheus-stack</text>
+<text x="1222" y="1097" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="9" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">Prometheus · Grafana</text>
+<text x="1222" y="1113" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8.5" fill="#94a3b8" font-weight="normal" text-anchor="start" letter-spacing="0">installed with Helm</text>
+<path d="M134 888 H166 V860 H190" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<path d="M380 890 V982" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="392" y="918" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">ingressClassName: alb</text>
+<text x="392" y="932" font-family="'JetBrains Mono',Consolas,'Courier New',monospace" font-size="8.5" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">path /  →  frontend-svc:80</text>
+<path d="M456 1047 H480" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<path d="M726 1047 H750" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<path d="M996 1047 H1050" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<path d="M1230 922 V896" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<text x="1242" y="916" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="8" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">egress</text>
+<path d="M1158 860 H1146" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar)"/>
+<rect x="26" y="1178" width="16" height="10" rx="2" fill="#fef4f4" stroke="#dc2626"/>
+<text x="50" y="1187" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">security gate — a finding fails the stage and stops the build</text>
+<path d="M424 1183 H456" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5"/>
+<text x="466" y="1187" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#64748b" font-weight="normal" text-anchor="start" letter-spacing="0">container image flow</text>
+<text x="624" y="1187" font-family="'Segoe UI',Roboto,Helvetica,Arial,sans-serif" font-size="10" fill="#94a3b8" font-weight="normal" text-anchor="start" letter-spacing="0">Prometheus and Grafana were installed on the cluster with Helm and are not tracked in this repository.</text>
+</svg>
