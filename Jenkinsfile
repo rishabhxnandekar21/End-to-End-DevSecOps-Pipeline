@@ -221,6 +221,84 @@ pipeline {
                 }
             }
         }
+
+        stage('GitOps Manifest Update') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'github-push',
+                        usernameVariable: 'GITHUB_USER',
+                        passwordVariable: 'GITHUB_TOKEN'
+                    )
+                ]) {
+                    bat '''
+                        echo ========================================
+                        echo Updating Kubernetes Image Tags
+                        echo ========================================
+
+                        powershell -NoProfile -Command ^
+                        "(Get-Content 'k8s-manifests\\backend.yaml') -replace 'devsecops-backend:v1-build-[0-9]+', 'devsecops-backend:v1-build-%BUILD_NUMBER%' | Set-Content 'k8s-manifests\\backend.yaml'"
+
+                        powershell -NoProfile -Command ^
+                        "(Get-Content 'k8s-manifests\\frontend.yaml') -replace 'devsecops-frontend:v1-build-[0-9]+', 'devsecops-frontend:v1-build-%BUILD_NUMBER%' | Set-Content 'k8s-manifests\\frontend.yaml'"
+
+                        echo.
+                        echo ========================================
+                        echo Updated Kubernetes Images
+                        echo ========================================
+
+                        findstr /C:"image:" k8s-manifests\\backend.yaml
+                        findstr /C:"image:" k8s-manifests\\frontend.yaml
+
+                        echo.
+                        echo ========================================
+                        echo Configuring Git
+                        echo ========================================
+
+                        git config user.name "jenkins-ci"
+                        git config user.email "jenkins-ci@localhost"
+
+                        echo.
+                        echo ========================================
+                        echo Git Status
+                        echo ========================================
+
+                        git status --short
+
+                        echo.
+                        echo ========================================
+                        echo Committing GitOps Changes
+                        echo ========================================
+
+                        git add k8s-manifests\\backend.yaml
+                        git add k8s-manifests\\frontend.yaml
+
+                        git diff --cached --quiet
+
+                        if %ERRORLEVEL% EQU 0 (
+                            echo No Kubernetes manifest changes detected.
+                            exit /b 0
+                        )
+
+                        git commit -m "Update Kubernetes images to v1-build-%BUILD_NUMBER%"
+
+                        echo.
+                        echo ========================================
+                        echo Pushing GitOps Changes
+                        echo ========================================
+
+                        git remote set-url origin https://%GITHUB_USER%:%GITHUB_TOKEN%@github.com/rishabhxnandekar21/End-to-End-DevSecOps-Pipeline.git
+
+                        git push origin HEAD:main
+
+                        echo.
+                        echo ========================================
+                        echo GitOps Manifest Update Successful
+                        echo ========================================
+                    '''
+                }
+            }
+        }
     }
 
     post {
@@ -232,7 +310,7 @@ pipeline {
             )
 
             echo '========================================'
-            echo ' Jenkins CI Pipeline Successful!'
+            echo ' Jenkins CI/CD Pipeline Successful!'
             echo ' GitLeaks: PASSED'
             echo ' OWASP Dependency-Check: PASSED'
             echo ' SonarQube: PASSED'
@@ -242,12 +320,14 @@ pipeline {
             echo ' Docker Build: PASSED'
             echo ' Trivy: PASSED'
             echo ' Docker Hub Push: PASSED'
+            echo ' GitOps Manifest Update: PASSED'
+            echo ' Argo CD: AUTOMATED SYNC'
             echo '========================================'
         }
 
         failure {
             echo '========================================'
-            echo ' Jenkins CI Pipeline Failed!'
+            echo ' Jenkins CI/CD Pipeline Failed!'
             echo ' Check the Console Output.'
             echo '========================================'
         }
