@@ -1,3 +1,4 @@
+
 # ==========================================
 # AWS Load Balancer Controller IAM Policy
 # ==========================================
@@ -67,3 +68,83 @@ resource "aws_iam_role_policy_attachment" "alb_controller" {
   role       = aws_iam_role.alb_controller.name
   policy_arn = aws_iam_policy.alb_controller.arn
 }
+
+# ==========================================
+# AWS Load Balancer Controller Helm Release
+# ==========================================
+
+resource "helm_release" "aws_load_balancer_controller" {
+  name             = "aws-load-balancer-controller"
+  namespace        = "kube-system"
+  create_namespace = false
+
+  repository = "https://aws.github.io/eks-charts"
+  chart      = "aws-load-balancer-controller"
+
+  depends_on = [
+    aws_iam_role_policy_attachment.alb_controller,
+    aws_eks_node_group.devsecops
+  ]
+
+  set = [
+    {
+      name  = "clusterName"
+      value = aws_eks_cluster.devsecops.name
+    },
+    {
+      name  = "region"
+      value = var.aws_region
+    },
+    {
+      name  = "vpcId"
+      value = aws_vpc.devsecops.id
+    },
+    {
+      name  = "serviceAccount.create"
+      value = "true"
+    },
+    {
+      name  = "serviceAccount.name"
+      value = "aws-load-balancer-controller"
+    },
+    {
+      name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+      value = aws_iam_role.alb_controller.arn
+    }
+  ]
+}
+
+# ==========================================
+# AWS Load Balancer Controller CRD Read RBAC
+# ==========================================
+
+resource "kubernetes_cluster_role" "alb_controller_crd_read" {
+  metadata {
+    name = "aws-load-balancer-controller-crd-read"
+  }
+
+  rule {
+    api_groups = ["apiextensions.k8s.io"]
+    resources  = ["customresourcedefinitions"]
+    verbs      = ["get", "list", "watch"]
+  }
+}
+
+resource "kubernetes_cluster_role_binding" "alb_controller_crd_read" {
+  metadata {
+    name = "aws-load-balancer-controller-crd-read"
+  }
+
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = kubernetes_cluster_role.alb_controller_crd_read.metadata[0].name
+  }
+
+  subject {
+    kind      = "ServiceAccount"
+    name      = "aws-load-balancer-controller"
+    namespace = "kube-system"
+  }
+}
+
